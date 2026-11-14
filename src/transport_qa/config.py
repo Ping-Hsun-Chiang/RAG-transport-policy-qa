@@ -23,3 +23,9 @@ EMBEDDING_BATCH_SIZE = int(os.getenv("EMBEDDING_BATCH_SIZE", "16"))
 
 # ChromaDB
 COLLECTION_NAME = "taiwan_transport_laws"
+
+# Retrieval
+TOP_K = int(os.getenv("TOP_K", "5"))
+# Minimum cosine similarity (0~1). Measured with bge-m3: relevant questions score
+# ~0.65-0.75, off-topic questions ~0.35-0.45, so 0.5 separates them.
+MIN_SIMILARITY = float(os.getenv("MIN_SIMILARITY", "0.5"))
