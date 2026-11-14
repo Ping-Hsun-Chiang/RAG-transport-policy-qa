@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from functools import lru_cache
 
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
@@ -17,6 +18,7 @@ def make_chunk_id(doc: Document) -> str:
     return f"{m['pcode']}-{m['article']}-{m['chunk_index']}"
 
 
+@lru_cache(maxsize=1)
 def get_vectorstore() -> Chroma:
     """Open (or create) the persistent collection under vectorstore/."""
     return Chroma(
